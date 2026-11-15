@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Makokha Shedrack | IT Professional</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #060b13;
+      --bg-card: #0d1625;
+      --accent-cyan: #00e5ff;
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --font-main: 'Inter', sans-serif;
+      --transition: all 0.3s ease;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ========== NAVIGATION ========== */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 8%;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+      background-color: rgba(6, 11, 19, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .logo { font-size: 1.8rem; font-weight: 700; color: var(--accent-cyan); letter-spacing: -0.5px; }
+    .nav-links { display: flex; gap: 2.5rem; }
+    .nav-links a { font-size: 0.9rem; font-weight: 500; transition: var(--transition); }
+    .nav-links a:hover { color: var(--accent-cyan); text-shadow: 0 0 8px rgba(0, 229, 255, 0.5); }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      padding-top: 80px;
+      position: relative;
+    }
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      width: 100%;
+    }
+    .hero-text h1 { font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; min-height: 1.2em; }
+    .hero-text h2 { font-size: 1.8rem; color: var(--accent-cyan); font-weight: 600; margin-bottom: 1.5rem; min-height: 1.5em; }
+    .cursor {
+      display: inline-block; width: 3px; height: 1em; background-color: var(--accent-cyan);
+      margin-left: 4px; animation: blink 0.8s infinite; vertical-align: text-bottom;
+    }
+    @keyframes blink { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
+    .hero-text p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin-bottom: 2.5rem; line-height: 1.8; }
+    .cta-btn {
+      display: inline-block; background-color: var(--accent-cyan); color: #000;
+      padding: 0.9rem 2rem; border-radius: 6px; font-weight: 600; font-size: 0.9rem;
+      letter-spacing: 1px; text-transform: uppercase; border: 2px solid var(--accent-cyan);
+      transition: var(--transition); margin-bottom: 2rem; cursor: pointer;
+    }
+    .cta-btn:hover { background-color: transparent; color: var(--accent-cyan); box-shadow: 0 0 15px rgba(0, 229, 255, 0.3); }
+    .social-icons { display: flex; gap: 1.2rem; }
+    .social-icons a { color: var(--accent-cyan); font-size: 1.5rem; transition: var(--transition); }
+    .social-icons a:hover { transform: translateY(-3px); text-shadow: 0 0 10px var(--accent-cyan); }
+
+    .hero-image-wrapper { position: relative; display: flex; justify-content: center; align-items: center; }
+    .hero-image-wrapper::before {
+      content: ''; position: absolute; width: 120%; height: 120%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1) 0%, transparent 60%); z-index: -1;
+    }
+    .profile-img-container {
+      width: 420px; height: 420px; border-radius: 50%; padding: 8px; position: relative;
+      background: var(--bg-main); border: 3px solid var(--accent-cyan);
+      box-shadow: 0 0 25px rgba(0, 229, 255, 0.4), inset 0 0 20px rgba(0, 229, 255, 0.2);
+    }
+    .profile-img-container img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .tech-lines {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+      pointer-events: none; border: 2px dashed rgba(0, 229, 255, 0.3); animation: rotate 30s linear infinite;
+    }
+    @keyframes rotate { 100% { transform: rotate(360deg); } }
+
+    /* ========== GENERAL ========== */
+    section { padding: 6rem 8%; }
+    .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-main); }
+    .section-title span { color: var(--accent-cyan); }
+    .section-subtitle { color: var(--text-muted); margin-bottom: 3rem; max-width: 600px; }
+
+    /* ========== ABOUT ========== */
+    .about-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; }
+    .about-text strong { color: var(--text-main); font-weight: 600; }
+    .info-box { background: var(--bg-card); padding: 2rem; border-radius: 10px; border-left: 4px solid var(--accent-cyan); }
+    .info-box ul { display: flex; flex-direction: column; gap: 1rem; }
+    .info-box li { display: flex; align-items: flex-start; gap: 1rem; color: var(--text-muted); }
+    .info-box i { color: var(--accent-cyan); margin-top: 4px; }
+
+    /* ========== CARDS + LOGOS ========== */
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .card {
+      background: var(--bg-card); padding: 2rem; border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);
+      position: relative;
+    }
+    .card:hover { transform: translateY(-5px); border-color: rgba(0, 229, 255, 0.3); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); }
+    .card i { font-size: 2rem; color: var(--accent-cyan); margin-bottom: 1rem; }
+    .card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .card .meta { color: var(--accent-cyan); font-size: 0.9rem; font-weight: 500; margin-bottom: 1rem; }
+    .card p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Education logo badge — BIGGER, clearer, cyan glow */
+    .edu-logo {
+      width: 110px;
+      height: 110px;
+      border-radius: 18%;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+      border: 3px solid var(--accent-cyan);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.55), inset 0 0 10px rgba(0, 229, 255, 0.2);
+    }
+    .edu-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;   /* minimal padding → logo fills the badge, very visible */
+      display: block;
+    }
+
+    /* ========== SKILLS (CIRCULAR, AUTO-ANIMATE) ========== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2.5rem;
+      justify-items: center;
+    }
+    .skill-ring { display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; }
+
+    .ring-wrap { position: relative; width: 150px; height: 150px; margin-bottom: 1rem; }
+    .ring-wrap svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+    .ring-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.08);
+      stroke-width: 8;
+    }
+    .ring-progress {
+      fill: none;
+      stroke: var(--accent-cyan);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 408.4;
+      stroke-dashoffset: 408.4;
+      transition: stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+      filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.8));
+    }
+
+    .ring-text {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      font-size: 1.5rem; font-weight: 700; color: var(--text-main);
+    }
+    .ring-text span { color: var(--accent-cyan); font-size: 1rem; }
+
+    .skill-label { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); max-width: 160px; line-height: 1.4; }
+
+    /* ========== PROJECTS ========== */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .project-card {
+      background: var(--bg-card); border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05); transition: var(--transition);
+    }
+    .project-card:hover { transform: translateY(-5px); border-color: rgba(0, 229, 255, 0.3); }
+    .project-img {
+      height: 180px; background: linear-gradient(45deg, #0d1625, #1a2a44);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; color: var(--accent-cyan); border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .project-info { padding: 1.5rem; }
+    .project-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+    .project-info p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+    .project-link { color: var(--accent-cyan); font-size: 0.9rem; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; }
+    .project-link:hover { text-decoration: underline; }
+
+    /* ========== CONTACT ========== */
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+      background: var(--bg-card); padding: 3rem; border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .contact-item i {
+      width: 40px; height: 40px; background: rgba(0, 229, 255, 0.1); color: var(--accent-cyan);
+      display: flex; align-items: center; justify-content: center; border-radius: 50%;
+    }
+    .contact-item a { transition: var(--transition); }
+    .contact-item a:hover { color: var(--accent-cyan); }
+    .whatsapp-btn {
+      display: inline-flex; align-items: center; gap: 0.8rem; background: #25d366;
+      color: #fff; padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 600;
+      margin-top: 1rem; transition: var(--transition);
+    }
+    .whatsapp-btn:hover { background: #1ebe5a; transform: translateY(-3px); }
+
+    /* ========== FOOTER ========== */
+    footer {
+      text-align: center; padding: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted); font-size: 0.9rem;
+    }
+    footer a { color: var(--accent-cyan); transition: var(--transition); }
+    footer a:hover { text-decoration: underline; text-shadow: 0 0 8px rgba(0, 229, 255, 0.5); }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 992px) {
+      .hero-container, .about-content, .contact-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-text p { margin: 0 auto 2rem auto; }
+      .social-icons { justify-content: center; }
+      .hero-image-wrapper { order: -1; margin-bottom: 2rem; }
+      .profile-img-container { width: 300px; height: 300px; }
+      .info-box { text-align: left; }
+      .edu-logo { margin-left: auto; margin-right: auto; width: 100px; height: 100px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-text h1 { font-size: 2.5rem; }
+      .hero-text h2 { font-size: 1.4rem; }
+      .profile-img-container { width: 250px; height: 250px; }
+      section { padding: 4rem 5%; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .edu-logo { width: 90px; height: 90px; }
+    }
+    @media (max-width: 480px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar">
+    <div class="logo">Makokha.</div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Featured Projects</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1><span id="typed-line1"></span><span class="cursor" id="cursor1"></span></h1>
+        <h2><span id="typed-line2"></span><span class="cursor" id="cursor2" style="display:none;"></span></h2>
+        <p>
+          I build reliable digital solutions at the intersection of IT support, networking, and
+          web development. Combining clean front-end engineering with sound infrastructure
+          practice, I deliver technology that is secure, efficient, and built to serve real
+          business needs.
+        </p>
+        <a href="#projects" class="cta-btn">View Projects</a>
+        <div class="social-icons">
+          <a href="https://github.com/makokhashedrack3-beep" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/shedrack-makokha-6379b6391" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="mailto:makokhashedrack3@gmail.com" title="Email" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <div class="hero-image-wrapper">
+        <div class="profile-img-container">
+          <div class="tech-lines"></div>
+          <img src="https://github.com/makokhashedrack3-beep/my-images/blob/main/DSC_9948%20(1)_page-0001.jpg?raw=true" alt="Makokha Shedrack">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2 class="section-title">About <span>Me</span></h2>
+    <p class="section-subtitle">Professional summary and areas of focus.</p>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          <strong>Professional Summary.</strong> I am an Information Technology professional and
+          software development student with hands-on experience in IT support, computer
+          maintenance, networking, and responsive web development. My work is grounded in
+          practical problem-solving — diagnosing hardware and software faults, configuring small
+          networks, and building clean, accessible web interfaces.
+        </p>
+        <p>
+          I am currently pursuing a Bachelor's degree in Software Development at Brigham Young
+          University, building on a Pre-Degree in Information Technology from Victoria University
+          and a Certificate in Computer from Nana Skills Hub. This academic foundation is paired
+          with real-world exposure through industrial training, where I supported day-to-day IT
+          operations in a professional environment.
+        </p>
+        <p>
+          <strong>Career Objective.</strong> To grow into a well-rounded IT professional
+          contributing to organisations in IT support, infrastructure, and full-stack development,
+          while deepening expertise in cloud computing and cybersecurity.
+        </p>
+      </div>
+      <div class="info-box">
+        <h3 style="margin-bottom: 1rem;">Professional Snapshot</h3>
+        <ul>
+          <li><i class="fas fa-graduation-cap"></i> BSc Software Development – Brigham Young University</li>
+          <li><i class="fas fa-network-wired"></i> IT Support &amp; Network Administration</li>
+          <li><i class="fas fa-code"></i> Front-End Development: HTML, CSS, JavaScript, Python</li>
+          <li><i class="fas fa-tools"></i> Computer Hardware Maintenance &amp; Troubleshooting</li>
+          <li><i class="fas fa-shield-alt"></i> Growing focus: Cloud &amp; Cybersecurity</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" style="background-color: #0b1320;">
+    <h2 class="section-title">Edu<span>cation</span></h2>
+    <p class="section-subtitle">Academic background and professional certifications.</p>
+    <div class="grid-cards">
+
+      <!-- BYU -->
+      <div class="card">
+        <div class="edu-logo">
+          <img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/Brigham_Young_University%E2%80%93Idaho_medallion.svg/1280px-Brigham_Young_University%E2%80%93Idaho_medallion.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail"
+               alt="Brigham Young University logo"
+               onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/initials/svg?seed=BYU&backgroundColor=ffffff&textColor=002e5d&fontWeight=700';">
+        </div>
+        <h3>Brigham Young University (BYU)</h3>
+        <p class="meta">Bachelor's Degree in Software Development</p>
+        <p>Pursuing advanced training in programming, software engineering principles, and collaborative online development.</p>
+      </div>
+
+      <!-- Victoria University -->
+      <div class="card">
+        <div class="edu-logo">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfsduzS5d6fniuXtIIJE4ziK4B9IfawbvHF-m_xVAeBw&s=10"
+               alt="Victoria University logo"
+               onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/initials/svg?seed=VU&backgroundColor=ffffff&textColor=7a1f2b&fontWeight=700';">
+        </div>
+        <h3>Victoria University</h3>
+        <p class="meta">Pre-Degree in Information Technology</p>
+        <p>Focused on hardware maintenance, systems support, and foundational IT operations.</p>
+      </div>
+
+      <!-- Nana Skills Hub -->
+      <div class="card">
+        <div class="edu-logo">
+          <img src="https://api.dicebear.com/7.x/initials/svg?seed=NSH&backgroundColor=ffffff&textColor=00b894&fontWeight=700"
+               alt="Nana Skills Hub logo">
+        </div>
+        <h3>Nana Skills Hub</h3>
+        <p class="meta">Computer Studies</p>
+        <p>Foundational training in computer applications, hardware basics, and digital literacy.</p>
+      </div>
+
+      <!-- Bukooli College -->
+      <div class="card">
+        <div class="edu-logo">
+          <img src="https://p16-common-sign.tiktokcdn.com/tos-alisg-avt-0068/009afd12b3aa8738101c4c29fb8a3eb1~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=ae9f8395&x-expires=1794913200&x-signature=arDexeBVyc1g2mr7BxkKeFrPoro%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
+               alt="Bukooli College logo">
+        </div>
+        <h3>Bukooli College</h3>
+        <p class="meta">Uganda Advanced Certificate of Education (UACE)</p>
+        <p>Developed analytical and problem-solving skills that underpin my technical work.</p>
+      </div>
+
+      <!-- Alliance Victory SS -->
+      <div class="card">
+        <div class="edu-logo">
+          <img src="https://p16-common-sign.tiktokcdn.com/tos-maliva-avt-0068/418c0174d17e968a7186e444d822d851~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=e98cc496&x-expires=1794913200&x-signature=ctsGaETWjVdkaQ%2F2EdLWjxLygLA%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my2"
+               alt="Alliance Victory SS logo">
+        </div>
+        <h3>Alliance Victory SS</h3>
+        <p class="meta">Uganda Certificate of Education (UCE)</p>
+        <p>Foundation for further studies in technology and computing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2 class="section-title">Technical <span>Skills</span></h2>
+    <p class="section-subtitle">Areas of expertise and core competencies.</p>
+
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-ring" data-percent="90">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">Computer Maintenance</div>
+      </div>
+
+      <div class="skill-ring" data-percent="85">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">Microsoft Office</div>
+      </div>
+
+      <div class="skill-ring" data-percent="80">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">Computer Networking</div>
+      </div>
+
+      <div class="skill-ring" data-percent="75">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">HTML, CSS, JS, Python</div>
+      </div>
+
+      <div class="skill-ring" data-percent="70">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">Graphic Design</div>
+      </div>
+
+      <div class="skill-ring" data-percent="95">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 150 150">
+            <circle class="ring-bg" cx="75" cy="75" r="65"></circle>
+            <circle class="ring-progress" cx="75" cy="75" r="65"></circle>
+          </svg>
+          <div class="ring-text"><span class="ring-number">0</span><span>%</span></div>
+        </div>
+        <div class="skill-label">Technical Support</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" style="background-color: #0b1320;">
+    <h2 class="section-title">Featured <span>Projects</span></h2>
+    <p class="section-subtitle">Selected work and practical collaborations.</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-globe"></i></div>
+        <div class="project-info">
+          <h3>Personal Portfolio</h3>
+          <p>A responsive, modern portfolio built with HTML, CSS, and JavaScript to showcase my professional skills.</p>
+          <a href="https://github.com/makokhashedrack3-beep" target="_blank" rel="noopener" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-users"></i></div>
+        <div class="project-info">
+          <h3>Entrepreneurship Club Platform</h3>
+          <p>Designed and developed a platform for a university entrepreneurship club to publish events and updates.</p>
+          <a href="https://busoga-high-wb9b.vercel.app/" target="_blank" rel="noopener" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-img"><i class="fas fa-network-wired"></i></div>
+        <div class="project-info">
+          <h3>Networking Labs</h3>
+          <p>Hands-on lab work covering LAN setup, IP addressing, router configuration, and fault troubleshooting.</p>
+          <a href="https://github.com/makokhashedrack3-beep" target="_blank" rel="noopener" class="project-link">View Project <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2 class="section-title">Professional <span>Experience</span></h2>
+    <p class="section-subtitle">Industrial training and practical exposure.</p>
+    <div class="card" style="max-width: 800px;">
+      <div class="edu-logo">
+        <img src="https://thumb.wikimedia.org/wikipedia/en/thumb/8/80/Iowa_State_University_seal.svg/1280px-Iowa_State_University_seal.svg.png?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=thumbnail"
+             alt="Iowa State University logo"
+             onerror="this.onerror=null;this.src='https://api.dicebear.com/7.x/initials/svg?seed=ISU&backgroundColor=ffffff&textColor=c8102e&fontWeight=700';">
+      </div>
+      <h3>Iowa State University–Uganda Program (ISU-UP)</h3>
+      <p class="meta">Industrial Training — Kamuli, Uganda</p>
+      <p>
+        Delivered frontline IT support and computer maintenance, installed and configured
+        software, managed data entry, and contributed to website development. Collaborated with
+        the team to maintain smooth daily operations and gained practical experience in
+        professional troubleshooting and service delivery.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="background-color: #0b1320;">
+    <h2 class="section-title">Get In <span>Touch</span></h2>
+    <p class="section-subtitle">Open to opportunities, collaborations, and freelance projects.</p>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-item">
+          <i class="fas fa-phone-alt"></i>
+          <div><h4>Phone</h4><p>+256 746888919</p></div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-envelope"></i>
+          <div><h4>Email</h4><p><a href="mailto:makokhashedrack3@gmail.com">makokhashedrack3@gmail.com</a></p></div>
+        </div>
+        <div class="contact-item">
+          <i class="fab fa-linkedin-in"></i>
+          <div><h4>LinkedIn</h4><p><a href="https://www.linkedin.com/in/shedrack-makokha-6379b6391" target="_blank" rel="noopener">shedrack-makokha-6379b6391</a></p></div>
+        </div>
+        <div class="contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <div><h4>Location</h4><p>Kampala, Uganda</p></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom: 1rem;">Send a Message</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          The fastest way to reach me is via WhatsApp or Email.
+        </p>
+        <a href="https://wa.me/256787152028" class="whatsapp-btn" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2026 Makokha Shedrack. All Rights Reserved.</p>
+    <p style="margin-top: 0.75rem;">
+      <a href="https://github.com/makokhashedrack3-beep" target="_blank" rel="noopener">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/shedrack-makokha-6379b6391" target="_blank" rel="noopener">LinkedIn</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:makokhashedrack3@gmail.com">Email</a>
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      /* ---------- TYPING EFFECT ---------- */
+      const line1Text = "Hi, I'm Makokha";
+      const line2Text = "IT Professional & Developer";
+
+      const typedLine1 = document.getElementById('typed-line1');
+      const typedLine2 = document.getElementById('typed-line2');
+      const cursor1 = document.getElementById('cursor1');
+      const cursor2 = document.getElementById('cursor2');
+
+      const LOOP_DELAY = 10000;
+      const TYPE_SPEED_1 = 100;
+      const TYPE_SPEED_2 = 80;
+      const START_DELAY = 500;
+
+      function runTypingCycle() {
+        typedLine1.textContent = '';
+        typedLine2.textContent = '';
+        cursor1.style.display = 'inline-block';
+        cursor2.style.display = 'none';
+
+        let i1 = 0, i2 = 0;
+
+        function typeLine1() {
+          if (i1 < line1Text.length) {
+            typedLine1.textContent += line1Text.charAt(i1++);
+            setTimeout(typeLine1, TYPE_SPEED_1);
+          } else {
+            cursor1.style.display = 'none';
+            cursor2.style.display = 'inline-block';
+            typeLine2();
+          }
+        }
+        function typeLine2() {
+          if (i2 < line2Text.length) {
+            typedLine2.textContent += line2Text.charAt(i2++);
+            setTimeout(typeLine2, TYPE_SPEED_2);
+          }
+        }
+        typeLine1();
+      }
+
+      setTimeout(runTypingCycle, START_DELAY);
+      setInterval(runTypingCycle, LOOP_DELAY);
+
+      /* ---------- CIRCULAR SKILL RINGS: AUTO-ANIMATE BLUE ---------- */
+      const CIRCUMFERENCE = 2 * Math.PI * 65;
+
+      document.querySelectorAll('.ring-progress').forEach(circle => {
+        circle.style.strokeDasharray = CIRCUMFERENCE;
+        circle.style.strokeDashoffset = CIRCUMFERENCE;
+      });
+
+      function animateNumber(el, target, duration) {
+        const start = performance.now();
+        function frame(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target);
+          if (progress < 1) requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      }
+
+      function animateRing(ringEl) {
+        const target = parseInt(ringEl.getAttribute('data-percent'), 10);
+        const circle = ringEl.querySelector('.ring-progress');
+        const numberEl = ringEl.querySelector('.ring-number');
+        const offset = CIRCUMFERENCE - (target / 100) * CIRCUMFERENCE;
+        circle.style.strokeDashoffset = offset;
+        animateNumber(numberEl, target, 1800);
+      }
+
+      const skillsSection = document.getElementById('skills');
+      let skillsAnimated = false;
+
+      const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !skillsAnimated) {
+            skillsAnimated = true;
+            document.querySelectorAll('.skill-ring').forEach((ring, index) => {
+              setTimeout(() => animateRing(ring), index * 150);
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+
+      skillsObserver.observe(skillsSection);
+    });
+  </script>
+</body>
+</html>
